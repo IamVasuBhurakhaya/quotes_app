@@ -1,8 +1,8 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:quotes_app/models/quote_model.dart';
-import 'package:quotes_app/utils/utils.dart'; // Import the QuoteModel class
+import 'package:quotes_app/utils/my_extentions.dart';
+import 'package:quotes_app/utils/utils.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,7 +14,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   bool isCheck = false;
 
-  // Convert the list of maps to a list of QuoteModel objects
   List<QuoteModel> allQuotes =
       allQuoteData.map((data) => QuoteModel.fromMap(data: data)).toList();
 
@@ -39,14 +38,63 @@ class _HomePageState extends State<HomePage> {
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: isCheck
-            ? Flexible(
+            // ? Flexible(
+            //     child: CardSwiper(
+            //       cardsCount: allQuotes.length,
+            //       cardBuilder:
+            //           (context, index, percentThresholdX, percentThresholdY) =>
+            //               Container(
+            //         decoration:
+            //             BoxDecoration(color: Colors.primaries[index % 18]),
+            //         alignment: Alignment.center,
+            //         child: Column(
+            //           mainAxisAlignment: MainAxisAlignment.center,
+            //           crossAxisAlignment: CrossAxisAlignment.center,
+            //           children: [
+            //             Text(
+            //               allQuotes[index].quote,
+            //               textAlign: TextAlign.center,
+            //               style: TextStyle(color: Colors.white, fontSize: 18),
+            //               maxLines: 5,
+            //               overflow: TextOverflow.ellipsis,
+            //             ),
+            //             SizedBox(height: 10),
+            //             Text(
+            //               "~ ${allQuotes[index].author}",
+            //               textAlign: TextAlign.center,
+            //               style: TextStyle(
+            //                   color: Colors.white, fontWeight: FontWeight.w600),
+            //               maxLines: 1,
+            //               overflow: TextOverflow.ellipsis,
+            //             ),
+            //           ],
+            //         ),
+            //       ),
+            //     ),
+            //   )
+            ? Container(
+                height: MediaQuery.of(context).size.height * 0.5,
                 child: CardSwiper(
                   cardsCount: allQuotes.length,
                   cardBuilder:
                       (context, index, percentThresholdX, percentThresholdY) =>
-                          Container(
-                    decoration:
-                        BoxDecoration(color: Colors.primaries[index % 18]),
+                          AnimatedContainer(
+                    padding: EdgeInsets.all(20),
+                    duration: Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                    margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                    decoration: BoxDecoration(
+                      color: Colors.primaries[index % 18],
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.3),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                    ),
                     alignment: Alignment.center,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -55,18 +103,38 @@ class _HomePageState extends State<HomePage> {
                         Text(
                           allQuotes[index].quote,
                           textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.white, fontSize: 18),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
                           maxLines: 5,
                           overflow: TextOverflow.ellipsis,
                         ),
-                        SizedBox(height: 10),
+                        20.h,
                         Text(
                           "~ ${allQuotes[index].author}",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.w600),
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                          ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
+                        ),
+                        50.h,
+                        Align(
+                          alignment: Alignment.bottomRight,
+                          child: Text(
+                            "${allQuotes[index].quotes_like}",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                       ],
                     ),
