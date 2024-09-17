@@ -15,26 +15,35 @@ class _DetailPageState extends State<DetailPage> {
   String authorFonts = MyFonts.Roboto.name;
   int quoteCounter = 18;
   int authorCounter = 14;
+
+  List<Color> myColors = [
+    Colors.white,
+    ...Colors.primaries,
+  ];
+
+  Color quoteFontColor = Colors.white;
+  Color bgColor = Colors.blue;
+
   @override
   Widget build(BuildContext context) {
     QuoteModel quote = ModalRoute.of(context)!.settings.arguments as QuoteModel;
     Size size = MediaQuery.sizeOf(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text("Detail Page"),
+        title: const Text("Detail Page"),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: size.height * 0.45,
+              height: size.height * 0.30,
               width: double.infinity,
-              padding: EdgeInsets.all(16),
-              alignment: Alignment(0, -1),
+              padding: const EdgeInsets.all(16),
+              alignment: const Alignment(0, -1),
               decoration: BoxDecoration(
-                color: Colors.blue.shade300,
+                color: bgColor,
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Column(
@@ -64,34 +73,38 @@ class _DetailPageState extends State<DetailPage> {
               ),
             ),
             15.h,
+
+            //Quote font title
             Row(
               children: [
-                Text(
+                const Text(
                   "Quotes Font",
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 IconButton(
                     onPressed: () {
                       setState(() {
                         quoteCounter--;
                       });
                     },
-                    icon: Icon(Icons.remove)),
-                Text("${quoteCounter}"),
+                    icon: const Icon(Icons.remove)),
+                Text("$quoteCounter"),
                 IconButton(
                     onPressed: () {
                       setState(() {
                         quoteCounter++;
                       });
                     },
-                    icon: Icon(Icons.add)),
+                    icon: const Icon(Icons.add)),
               ],
             ),
             10.h,
+
+            //Quote fonts
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
@@ -113,34 +126,38 @@ class _DetailPageState extends State<DetailPage> {
               ),
             ),
             15.h,
+
+            //Author fonts title
             Row(
               children: [
-                Text(
+                const Text(
                   "Author Font",
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 IconButton(
                     onPressed: () {
                       setState(() {
                         authorCounter--;
                       });
                     },
-                    icon: Icon(Icons.remove)),
-                Text("${authorCounter}"),
+                    icon: const Icon(Icons.remove)),
+                Text("$authorCounter"),
                 IconButton(
                     onPressed: () {
                       setState(() {
                         authorCounter++;
                       });
                     },
-                    icon: Icon(Icons.add)),
+                    icon: const Icon(Icons.add)),
               ],
             ),
             10.h,
+
+            //Author fonts
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
@@ -158,6 +175,72 @@ class _DetailPageState extends State<DetailPage> {
                     .toList(),
               ),
             ),
+            15.h,
+
+            //Quote color title
+            const Row(
+              children: [
+                Text(
+                  "Quote Colors",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+            10.h,
+
+            //Quotes colors
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Stack(
+                children: [
+                  Row(
+                    children: myColors
+                        .map(
+                          (e) => GestureDetector(
+                            onTap: () {},
+                            child: Container(
+                              height: 35,
+                              width: 35,
+                              decoration: BoxDecoration(
+                                color: Colors.transparent,
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: Colors.black54,
+                                ),
+                              ),
+                              margin: const EdgeInsets.all(10),
+                            ),
+                          ),
+                        )
+                        .toList(),
+                  ),
+                  Row(
+                    children: myColors
+                        .map(
+                          (e) => GestureDetector(
+                            onTap: () {
+                              bgColor = e;
+                              setState(() {});
+                            },
+                            child: Container(
+                              height: 30,
+                              width: 30,
+                              decoration: BoxDecoration(
+                                color: e,
+                                shape: BoxShape.circle,
+                              ),
+                              margin: const EdgeInsets.all(10),
+                            ),
+                          ),
+                        )
+                        .toList(),
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),
