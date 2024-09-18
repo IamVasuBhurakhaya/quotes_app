@@ -85,14 +85,23 @@ class _HomePageState extends State<HomePage> {
                     margin: const EdgeInsets.symmetric(
                         vertical: 10, horizontal: 15),
                     decoration: BoxDecoration(
-                      color: Colors.primaries[index % 18],
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.primaries[index % Colors.primaries.length],
+                          Colors
+                              .primaries[(index + 1) % Colors.primaries.length]
+                              .withOpacity(0.7),
+                        ],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.3),
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset: const Offset(0, 3),
+                          color: Colors.black.withOpacity(0.5),
+                          spreadRadius: 3,
+                          blurRadius: 10,
+                          offset: const Offset(0, 5),
                         ),
                       ],
                     ),
@@ -101,6 +110,7 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
+                        // Quote Text
                         Text(
                           allQuotes[index].quote,
                           textAlign: TextAlign.center,
@@ -112,30 +122,74 @@ class _HomePageState extends State<HomePage> {
                           maxLines: 5,
                           overflow: TextOverflow.ellipsis,
                         ),
-                        20.h,
+                        const SizedBox(height: 20),
+                        // Author Text
                         Text(
                           "~ ${allQuotes[index].author}",
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w600,
+                            fontSize: 16,
                           ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
-                        50.h,
-                        Align(
-                          alignment: Alignment.bottomRight,
-                          child: Text(
-                            "${allQuotes[index].quotes_like}",
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
+                        const SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Row(
+                              children: [
+                                const Icon(Icons.thumb_up,
+                                    color: Colors.white, size: 20),
+                                const SizedBox(width: 5),
+                                Text(
+                                  "${allQuotes[index].quotes_like}",
+                                  style: const TextStyle(color: Colors.white),
+                                ),
+                              ],
                             ),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
+                            Row(
+                              children: [
+                                const Icon(Icons.share,
+                                    color: Colors.white, size: 20),
+                                const SizedBox(width: 5),
+                                Text(
+                                  "${allQuotes[index].quotes_share}", // Assuming you have share_count
+                                  style: const TextStyle(color: Colors.white),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Row(
+                              children: [
+                                const Icon(Icons.category,
+                                    color: Colors.white, size: 20),
+                                const SizedBox(width: 5),
+                                Text(
+                                  "${allQuotes[index].category}", // Assuming you have a category field
+                                  style: const TextStyle(color: Colors.white),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                const Icon(Icons.star,
+                                    color: Colors.white, size: 20),
+                                const SizedBox(width: 5),
+                                Text(
+                                  "${allQuotes[index].popularity}", // Assuming you have a popularity field
+                                  style: const TextStyle(color: Colors.white),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ],
                     ),
