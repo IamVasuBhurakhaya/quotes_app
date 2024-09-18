@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class QuoteModel {
   String quote, author, category, popularity;
   int quotes_like, quotes_share;

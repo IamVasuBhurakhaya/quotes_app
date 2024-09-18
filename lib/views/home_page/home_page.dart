@@ -30,8 +30,8 @@ class _HomePageState extends State<HomePage> {
               });
             },
             icon: isCheck
-                ? Icon(Icons.grid_view_rounded)
-                : Icon(Icons.list_rounded),
+                ? const Icon(Icons.grid_view_rounded)
+                : const Icon(Icons.list_rounded),
           ),
         ],
       ),
@@ -79,10 +79,11 @@ class _HomePageState extends State<HomePage> {
                   cardBuilder:
                       (context, index, percentThresholdX, percentThresholdY) =>
                           AnimatedContainer(
-                    padding: EdgeInsets.all(20),
-                    duration: Duration(milliseconds: 300),
+                    padding: const EdgeInsets.all(20),
+                    duration: const Duration(milliseconds: 300),
                     curve: Curves.easeInOut,
-                    margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                    margin: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 15),
                     decoration: BoxDecoration(
                       color: Colors.primaries[index % 18],
                       borderRadius: BorderRadius.circular(20),
@@ -91,7 +92,7 @@ class _HomePageState extends State<HomePage> {
                           color: Colors.black.withOpacity(0.3),
                           spreadRadius: 5,
                           blurRadius: 7,
-                          offset: Offset(0, 3),
+                          offset: const Offset(0, 3),
                         ),
                       ],
                     ),
@@ -103,7 +104,7 @@ class _HomePageState extends State<HomePage> {
                         Text(
                           allQuotes[index].quote,
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -115,7 +116,7 @@ class _HomePageState extends State<HomePage> {
                         Text(
                           "~ ${allQuotes[index].author}",
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w600,
                           ),
@@ -128,7 +129,7 @@ class _HomePageState extends State<HomePage> {
                           child: Text(
                             "${allQuotes[index].quotes_like}",
                             textAlign: TextAlign.center,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w600,
                             ),
@@ -143,11 +144,11 @@ class _HomePageState extends State<HomePage> {
               )
             : Scrollbar(
                 thickness: 8,
-                radius: Radius.circular(10),
+                radius: const Radius.circular(10),
                 interactive: true,
                 thumbVisibility: true,
                 child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     childAspectRatio: 3 / 4,
                   ),
@@ -169,7 +170,7 @@ class _HomePageState extends State<HomePage> {
                             Expanded(
                               child: Text(
                                 allQuotes[index].quote,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Colors.white,
                                 ),
                                 maxLines: 5,
@@ -179,7 +180,7 @@ class _HomePageState extends State<HomePage> {
                             Text(
                               "~ ${allQuotes[index].author}",
                               textAlign: TextAlign.end,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600,
                               ),
