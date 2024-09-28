@@ -1,7 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:quotes_app/models/quote_model.dart';
-import 'package:quotes_app/utils/my_extentions.dart';
 import 'package:quotes_app/utils/utils.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,6 +20,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    log("length= ${Colors.primaries.length}");
     return Scaffold(
       appBar: AppBar(
         title: const Text("Quote App"),
@@ -38,40 +40,6 @@ class _HomePageState extends State<HomePage> {
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: isCheck
-            // ? Flexible(
-            //     child: CardSwiper(
-            //       cardsCount: allQuotes.length,
-            //       cardBuilder:
-            //           (context, index, percentThresholdX, percentThresholdY) =>
-            //               Container(
-            //         decoration:
-            //             BoxDecoration(color: Colors.primaries[index % 18]),
-            //         alignment: Alignment.center,
-            //         child: Column(
-            //           mainAxisAlignment: MainAxisAlignment.center,
-            //           crossAxisAlignment: CrossAxisAlignment.center,
-            //           children: [
-            //             Text(
-            //               allQuotes[index].quote,
-            //               textAlign: TextAlign.center,
-            //               style: TextStyle(color: Colors.white, fontSize: 18),
-            //               maxLines: 5,
-            //               overflow: TextOverflow.ellipsis,
-            //             ),
-            //             SizedBox(height: 10),
-            //             Text(
-            //               "~ ${allQuotes[index].author}",
-            //               textAlign: TextAlign.center,
-            //               style: TextStyle(
-            //                   color: Colors.white, fontWeight: FontWeight.w600),
-            //               maxLines: 1,
-            //               overflow: TextOverflow.ellipsis,
-            //             ),
-            //           ],
-            //         ),
-            //       ),
-            //     ),
-            //   )
             ? Container(
                 height: MediaQuery.of(context).size.height * 0.5,
                 child: CardSwiper(

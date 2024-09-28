@@ -419,3 +419,25 @@ class _DetailPageState extends State<DetailPage> {
     );
   }
 }
+
+// Current active section
+// String activeSection = '';
+
+// ElevatedButton(
+//   onPressed: () {
+//     setState(() {
+//       activeSection = activeSection == 'QuoteFonts' ? '' : 'QuoteFonts';
+//     });
+//   },
+//     child: const Text("Quote Fonts"),
+//   ),
+
+// Show Author Fonts section
+// if (activeSection == 'AuthorFonts') ...[
+// Row(
+// children: [
+// const Text(
+// "Author Fonts",
+// style: TextStyle(
+// fontSize: 20,
+// fontWeight: FontWeight.w600,
